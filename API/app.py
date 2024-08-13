@@ -32,9 +32,11 @@ limiter=Limiter(
 def get_weather(location):
     filterstart = request.args.get('start', "")
     filterend=request.args.get('end', "")
+    redisKey = location + filterstart + filterend
+
     # try to get data from cache
     try:
-        storedData = r.get(location)
+        storedData = r.get(redisKey)
         if storedData:
             return jsonify(json.loads(storedData.decode('utf-8')))
     except redis.RedisError as redis_error:
@@ -48,10 +50,9 @@ def get_weather(location):
     http = urllib3.PoolManager(cert_reqs='CERT_REQUIRED', ca_certs=certifi.where())
     try:
         response = http.request('GET', url, timeout=5.0)
-        print(response.status)
         if response.status == 200:
             try:
-                r.setex(location, time=redis_expiry,value= response.data)
+                r.setex(redisKey, time=redis_expiry,value= response.data)
             except redis.RedisError as redis_error:
                 logging.error(f"Failed to cache in redis: {redis_error}")
 
