@@ -39,6 +39,15 @@ WEATHER_API_KEY=your_visual_crossing_weather_api_key
 
 ###4. Run the application
 ```
-python app.py
+cd API
+flask --app app run
 ```
- which will run on port 500 as default.
+ which will run on port 5000 as default.
+
+## Usage
+Example:
+```
+curl "http://127.0.0.1:5000/London?start=2024-08-01&end=2024-08-15"
+```
+Request can handle a location (required) as well as a start date (optional) and end date (optional).  
+
