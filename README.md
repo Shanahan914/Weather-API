@@ -22,22 +22,23 @@ Solution to the roadmap.sh project Weather API https://roadmap.sh/projects/weath
 
 ### 1. Clone the Repository
 
-```bash
+```
+bash
 git clone https://github.com/yourusername/yourrepository.git
 cd yourrepository
 ```
-###2. Install dependencies 
+### 2. Install dependencies 
 ```
 pip install -r requirements.txt
 ```
-###3. Environment variables
+### 3. Environment variables
 ```
 touch.env
 REDIS_PASSWORD=your_redis_password
 WEATHER_API_KEY=your_visual_crossing_weather_api_key
 ```
 
-###4. Run the application
+### 4. Run the application
 ```
 cd API
 flask --app app run
